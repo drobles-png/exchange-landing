@@ -1,0 +1,60 @@
+// Tokens de marca. Este archivo se inyecta en cada <style lang="scss"> (vite.config.ts):
+// SOLO variables y mixins aquí (nada que emita CSS). Lo que emite CSS va en global.scss.
+// Para un cliente nuevo: cambiar los colores de "Marca" y la familia tipográfica.
+
+// ── Marca (neutros por defecto: reemplazar con los del cliente) ───────────────
+$primary: #1d519d; // azul Exchange
+$primary-hover: #163f7a;
+$on-primary: #ffffff; // texto sobre $primary (contraste 4.5:1 mínimo)
+$primary-soft: #e8f0fa;
+
+// ── Neutros ───────────────────────────────────────────────────────────────────
+$surface: #f3f7fb; // fondo de página
+$raised: #ffffff; // tarjetas, modales
+$surface-dark: #0e182c;
+$line: #dce0e7; // bordes de 1px
+$ink: #0e182c;
+$ink-muted: #576071; // texto secundario
+$ink-on-dark: #f2f4f8;
+$ink-on-dark-muted: #a3abba;
+
+// ── Estados ───────────────────────────────────────────────────────────────────
+$success: #0f8a4b;
+$error: #d1142a;
+
+// ── Tipografía (se carga en index.html desde Google Fonts) ────────────────────
+$font-sans: 'Montserrat', system-ui, sans-serif;
+$font-head: 'Poppins', system-ui, sans-serif;
+$accent: #29b7b8; // turquesa Exchange
+$accent-light: #81e6d9; // acentos sobre fondos azules
+$accent-dark: #127475; // turquesa para texto sobre blanco (AA)
+// Naranja de los CTA de exchangeec.lat (#ff6a00), oscurecido para contraste AA con texto blanco
+$cta: #c94f00;
+$cta-hover: #a84200;
+$cta-bright: #ff6a00; // naranja original, solo decorativo (puntos, subrayados)
+$brand-gradient: linear-gradient(120deg, #1d519d 0%, #2174a6 55%, #29b7b8 100%);
+// Fondos oscuros con patrón de puntos (mapa): hero, cabecera de los pasos, cierre
+$navy-grad: linear-gradient(160deg, #0e182c 0%, #12305f 55%, #1d519d 100%);
+$dots: radial-gradient(rgba(#fff, 0.09) 1px, transparent 1.5px) 0 0 / 22px 22px;
+$font-mono: 'IBM Plex Mono', ui-monospace, monospace; // etiquetas tipo tarjeta de embarque
+
+// ── Forma ─────────────────────────────────────────────────────────────────────
+$radius-sm: 6px;
+$radius-md: 12px;
+$radius-lg: 20px;
+$shadow-modal: 0 24px 64px rgba(7, 9, 14, 0.22);
+$content-width: 1080px;
+
+// Etiquetas tipo tarjeta de embarque
+@mixin eyebrow {
+  font-family: $font-mono;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@mixin focus-ring {
+  outline: 2px solid $primary;
+  outline-offset: 2px;
+}
