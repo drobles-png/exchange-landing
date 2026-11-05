@@ -100,8 +100,10 @@ Nunca usar la variable `tags` como valor de etiqueta.
 - `e2e/agenda.json` (califica). Para no califica: misma secuencia con `quien=estudiante` y `wait_url` `/sin-espacio`.
 - Selectores de opciones con comillas: `input[value='13_15']` (un valor que empieza con número rompe el CSS sin comillas).
 - Estado (4-nov-2026): stub local OK. Producción modo `full`: Meta OK, los 4 eventos de Servidor
-  "Deduplicado" en el Probador (mismo event_id que el Pixel, user_data completo). GHL: los dos webhooks
-  responden `test request received` → **flujos sin publicar**; repetir modo `ghl` cuando estén publicados.
+  "Deduplicado" en el Probador (mismo event_id que el Pixel, user_data completo). GHL (modo `ghl`, flujos
+  publicados): los dos webhooks responden `request sent to trigger execution server` en registro,
+  cualificación (CALIFICA y NO_CALIFICA) y cita. Contactos de prueba: prueba.califica@ y
+  prueba.nocalifica@bakano-test.com (borrarlos en GHL).
 - En producción el CTA se bloquea 100 s: para el e2e real agregar `{"wait": 102000}` después de /ver-video.
 - El pixel trae el plugin `botblocking`: con HeadlessChrome NO envía eventos (no es un bug). Para ver el
   Pixel en modo `full`, correr el e2e con user-agent de celular real (monkeypatch de `Browser.new_context`).
@@ -112,7 +114,6 @@ Nunca usar la variable `tags` como valor de etiqueta.
 - Legales: razón social, RUC, correo, ciudad (`LEGAL` en la config).
 - Facebook de Exchange (`CLIENT.facebook`).
 - Opcional: foto de Karla/Majo y permiso para usar los videos de estudiantes/padres de su web como testimonios.
-- Publicar y mapear los flujos de GHL (contacto y cualificación) con la muestra más reciente.
 - Definir estrategia en la ficha técnica de Bakano.
 
 ## Convenciones (el e2e depende de ellas)
