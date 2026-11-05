@@ -60,9 +60,14 @@ Todo el texto en `src/content/copy.ts` y sale del guion del VSL o de exchangeec.
 | CTA de /ver-video | se desbloquea a los 100 s |
 | Storage / tag | prefijo `ex` · `funnel-exchange` |
 
-Secretos solo en `.env.local` (ignorado por git) y en env vars de Vercel: `META_PIXEL_ID`,
-`META_CAPI_TOKEN`, `META_CAPI_TEST_EVENT_CODE` (= `TEST84421` solo mientras se prueba en el Probador
-de eventos; **quitarlo y redeploy antes de pautar**).
+Secretos solo en `.env.local` (ignorado por git) y en env vars de Vercel (Production y Preview):
+`META_PIXEL_ID`, `META_CAPI_TOKEN`. `META_CAPI_TEST_EVENT_CODE` solo mientras se prueba en el Probador
+de eventos; luego `vercel env rm … production --yes` y redeploy (ya quitado el 4-nov-2026).
+
+## Producción
+- https://exchange-ecuador.vercel.app (alias; `exchange-landing.vercel.app` era de otro proyecto)
+- Repo https://github.com/drobles-png/exchange-landing (público) · Vercel `bakano-proyects/exchange-landing`,
+  git conectado: cada push a `main` despliega.
 
 ## Cualificación (`src/utils/qualification.ts`) — aprobada con el usuario (4-nov-2026)
 Preguntas: quién llena (`padre_madre`, `familiar`, `estudiante`) · edad del hijo (`menor_13`, `13_15`,
@@ -94,9 +99,12 @@ Nunca usar la variable `tags` como valor de etiqueta.
 ## Pruebas
 - `e2e/agenda.json` (califica). Para no califica: misma secuencia con `quien=estudiante` y `wait_url` `/sin-espacio`.
 - Selectores de opciones con comillas: `input[value='13_15']` (un valor que empieza con número rompe el CSS sin comillas).
-- Estado: stub local **OK** en los dos caminos (registro, cualificación, cita; prefill y atribución del calendario OK).
-- Pendiente (con permiso del usuario): modo `ghl` en producción con contactos `@bakano-test.com` y modo `full`
-  con el Probador de eventos.
+- Estado (4-nov-2026): stub local OK. Producción modo `full`: Meta OK, los 4 eventos de Servidor
+  "Deduplicado" en el Probador (mismo event_id que el Pixel, user_data completo). GHL: los dos webhooks
+  responden `test request received` → **flujos sin publicar**; repetir modo `ghl` cuando estén publicados.
+- En producción el CTA se bloquea 100 s: para el e2e real agregar `{"wait": 102000}` después de /ver-video.
+- El pixel trae el plugin `botblocking`: con HeadlessChrome NO envía eventos (no es un bug). Para ver el
+  Pixel en modo `full`, correr el e2e con user-agent de celular real (monkeypatch de `Browser.new_context`).
 
 ## Pendientes del cliente (bloquean pauta)
 - Confirmar el video (`kt29jg68bp` dura 1:55 y es el de Vancouver de su web; el guion dura ~6-7 min).
@@ -104,7 +112,7 @@ Nunca usar la variable `tags` como valor de etiqueta.
 - Legales: razón social, RUC, correo, ciudad (`LEGAL` en la config).
 - Facebook de Exchange (`CLIENT.facebook`).
 - Opcional: foto de Karla/Majo y permiso para usar los videos de estudiantes/padres de su web como testimonios.
-- Publicar: repo `drobles-png` público + Vercel (`bakano-proyects`) con env vars.
+- Publicar y mapear los flujos de GHL (contacto y cualificación) con la muestra más reciente.
 - Definir estrategia en la ficha técnica de Bakano.
 
 ## Convenciones (el e2e depende de ellas)
