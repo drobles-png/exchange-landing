@@ -33,7 +33,7 @@ Sin flujo de pago (`PAYMENT_ENABLED = false`).
   Azul `#1d519d`, turquesa `#29b7b8`, navy `#0e182c`, degradado del logo; CTA naranja `#c94f00`
   (el `#ff6a00` de su web no da contraste AA con texto blanco; se usa solo decorativo como `$cta-bright`).
 - Concepto visual: **el viaje** ("Travel to learn"): ruta de vuelo punteada, etiquetas mono tipo
-  tarjeta de embarque, preocupaciones como etiquetas de equipaje, sello de pasaporte, video con
+  tarjeta de embarque, sello de pasaporte, video con
   forma de ticket. Tokens compartidos en `src/styles/tokens.scss` (`$navy-grad`, `$dots`, `eyebrow`).
 - Pasos internos usan `StepShell.vue`: cabecera azul con slot `hero` (título) y el contenido se monta
   sobre su borde inferior.
@@ -45,8 +45,7 @@ Sin flujo de pago (`PAYMENT_ENABLED = false`).
   rutas y en los dos modales; sin scroll horizontal a 360/390 px.
 
 ## Landing (orden de secciones)
-Barra de urgencia → hero (video) → cifras (13 años · 4 países · 2 salidas) → 4 preocupaciones con su
-respuesta → fundadoras → destinos con fotos → ¿es para tu familia? → cuando vuelve → cierre.
+Barra de urgencia → hero (video) → cifras (13 años · 4 países · 2 salidas) → fundadoras → destinos con fotos → ¿es para tu familia? → cuando vuelve → cierre.
 Todo el texto en `src/content/copy.ts` y sale del guion del VSL o de exchangeec.lat (calendario por destino).
 
 ## Config (`src/config/funnel.ts`)

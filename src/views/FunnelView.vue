@@ -44,8 +44,6 @@ onMounted(() => {
   if (route.query.editar) modalOpen.value = true
 })
 onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
-
-const pad = (i: number) => String(i + 1).padStart(2, '0')
 </script>
 
 <template>
@@ -106,25 +104,6 @@ const pad = (i: number) => String(i + 1).padStart(2, '0')
           <span class="stats__text">{{ s.text }}</span>
         </li>
       </ul>
-    </section>
-
-    <!-- PREOCUPACIONES → RESPUESTAS (etiquetas de equipaje) -->
-    <section class="section" aria-labelledby="pains-title">
-      <div class="wrap">
-        <p class="eyebrow">{{ LANDING.pains.eyebrow }}</p>
-        <h2 id="pains-title" class="section__title">{{ LANDING.pains.title }}</h2>
-        <p class="section__sub">{{ LANDING.pains.sub }}</p>
-        <ul class="tags" role="list">
-          <li v-for="(p, i) in LANDING.pains.items" :key="p.fear" class="tag">
-            <span class="tag__num">{{ pad(i) }} / 04</span>
-            <h3 class="tag__fear">“{{ p.fear }}”</h3>
-            <p class="tag__answer">
-              <span class="tag__label"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Lo que hacemos</span>
-              {{ p.answer }}
-            </p>
-          </li>
-        </ul>
-      </div>
     </section>
 
     <!-- FUNDADORAS -->
@@ -642,70 +621,6 @@ const pad = (i: number) => String(i + 1).padStart(2, '0')
 
   &--light {
     color: $accent-light;
-  }
-}
-
-// ── Preocupaciones: etiquetas de equipaje ─────────────────────────────────────
-.tags {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
-  margin: 40px 0 0;
-  padding: 0;
-  list-style: none;
-
-  @media (max-width: 760px) {
-    grid-template-columns: 1fr;
-  }
-}
-
-.tag {
-  position: relative;
-  padding: 26px 26px 24px 64px;
-  border: 1px solid $line;
-  border-radius: 14px;
-  background: #fff;
-  box-shadow: 0 2px 0 $line;
-
-  // Ojal de la etiqueta
-  &::before {
-    content: '';
-    position: absolute;
-    top: 28px;
-    left: 24px;
-    width: 16px;
-    height: 16px;
-    border: 3px solid $primary-soft;
-    border-radius: 50%;
-    background: $surface;
-  }
-
-  &__num {
-    @include mono-label;
-    color: $ink-muted;
-    font-size: 0.66rem;
-  }
-
-  &__fear {
-    margin: 8px 0 16px;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: $ink;
-  }
-
-  &__answer {
-    padding-top: 14px;
-    border-top: 2px dashed $line;
-    color: $ink-muted;
-    font-size: 0.95rem;
-  }
-
-  &__label {
-    @include mono-label;
-    display: block;
-    margin-bottom: 6px;
-    color: $accent-dark;
-    font-size: 0.66rem;
   }
 }
 

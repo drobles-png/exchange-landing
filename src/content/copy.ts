@@ -39,18 +39,6 @@ export const LANDING = {
     { value: '2', unit: 'salidas', text: 'Marzo para la Costa, julio para la Sierra' },
   ],
 
-  pains: {
-    eyebrow: 'Lo que nos dicen las familias',
-    title: 'Las 4 preocupaciones con las que llegan casi todos los papás',
-    sub: 'Son totalmente válidas. Por eso cada parte del programa está diseñada para responderlas antes de que existan.',
-    items: [
-      { fear: 'Que el lugar no sea seguro', answer: 'Solo abrimos destinos que conocemos en persona, en ciudades a escala de un adolescente.' },
-      { fear: 'Que mi hijo esté solo', answer: 'Nunca viaja solo: el grupo sale con educadores que están con ellos todos los días.' },
-      { fear: 'Que la escuela no sea lo que prometieron', answer: 'Visitamos la escuela por dentro antes de abrir el programa. No te la contamos por un folleto.' },
-      { fear: 'Que si algo pasa, nadie me conteste', answer: 'Mientras tu hijo está lejos, siempre hay alguien de nuestro lado que te responde.' },
-    ],
-  },
-
   founders: {
     eyebrow: 'Quiénes somos',
     quote: '¿Enviaríamos aquí a nuestros propios hijos?',
