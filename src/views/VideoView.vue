@@ -11,7 +11,7 @@ import { VIDEO } from '@/content/copy'
 import { useContactStore } from '@/stores/contact'
 import { sendCapiEvent } from '@/utils/capi'
 import { captureFbParams } from '@/utils/fbclid'
-import { fbq, generateEventId } from '@/utils/ghl'
+import { fbq, firstTime, generateEventId } from '@/utils/ghl'
 
 const contactStore = useContactStore()
 const registerOpen = ref(false)
@@ -39,6 +39,8 @@ function startTimer() {
 }
 
 function trackViewContent() {
+  // Un ViewContent por sesión (recargar /ver-video no lo repite)
+  if (!firstTime('view_video', sessionStorage)) return
   const c = contactStore.get()
   const eventId = generateEventId('view_video')
   const custom = { content_name: 'video-vsl' }

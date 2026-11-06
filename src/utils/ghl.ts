@@ -3,8 +3,23 @@
  * Todos los webhooks de la subcuenta actualizan el MISMO contacto (GHL deduplica por email/teléfono
  * si la desduplicación está activa), así que el avance de etapa reutiliza el webhook de contacto.
  */
-import { FUNNEL_TAG, GHL_CONTACT_WEBHOOK } from '@/config/funnel'
+import { FUNNEL_TAG, GHL_CONTACT_WEBHOOK, STORAGE_PREFIX } from '@/config/funnel'
 import { getStoredFbParams } from './fbclid'
+
+/**
+ * Candado anti-duplicados: true solo la primera vez que se pide `key` en este navegador
+ * (o en esta sesión con sessionStorage). Sin storage disponible deja pasar.
+ */
+export function firstTime(key: string, storage: Storage = localStorage): boolean {
+  const k = `${STORAGE_PREFIX}_sent_${key}`
+  try {
+    if (storage.getItem(k)) return false
+    storage.setItem(k, String(Date.now()))
+  } catch {
+    /* sin storage: dejar pasar */
+  }
+  return true
+}
 
 export function generateEventId(prefix = 'evt'): string {
   return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2)}`

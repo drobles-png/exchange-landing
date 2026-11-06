@@ -18,7 +18,7 @@ import { REGISTRO } from '@/content/copy'
 import { useDialogFocus } from '@/composables/useDialogFocus'
 import { useContactStore } from '@/stores/contact'
 import { sendCapiEvent } from '@/utils/capi'
-import { buildPayload, fbq, generateEventId, postToGhl, type ContactoNota } from '@/utils/ghl'
+import { buildPayload, fbq, firstTime, generateEventId, postToGhl, type ContactoNota } from '@/utils/ghl'
 
 const props = withDefaults(defineProps<{ open: boolean; redirect?: boolean }>(), { redirect: true })
 const emit = defineEmits<{ (e: 'close'): void; (e: 'registered'): void }>()
@@ -97,7 +97,8 @@ let completed = false
 let lastPartialKey = ''
 
 function capturePartial() {
-  if (completed) return
+  // Ya registrado (p. ej. abrió "Corregir mis datos" y cerró): no degradarlo a registro_parcial
+  if (completed || contactStore.has()) return
   const c = contacto()
   if (!c.email && !c.telefono) return
   const key = Object.values(c).join('|')
@@ -125,8 +126,13 @@ async function handleSubmit() {
   completed = true
 
   const c = contacto()
+  const prev = contactStore.get()
+  // Mismo contacto que ya se registró en este navegador: no reenviar a GHL (re-dispararía el flujo)
+  const unchanged =
+    contactStore.has() &&
+    (['nombre', 'apellido', 'email', 'telefono', 'pais'] as const).every((k) => (prev[k] ?? '') === (c[k] ?? ''))
   const eventId = generateEventId('registro')
-  await postToGhl(
+  if (!unchanged) await postToGhl(
     GHL_CONTACT_WEBHOOK,
     buildPayload('registro', c, {
       tags: ['step-1-registro'],
@@ -136,14 +142,17 @@ async function handleSubmit() {
     }),
   )
 
-  const custom = { content_name: 'registro' }
-  fbq('track', 'CompleteRegistration', custom, { eventID: eventId })
-  sendCapiEvent(
-    'CompleteRegistration',
-    eventId,
-    { email: c.email, phone: c.telefono, firstName: c.nombre, lastName: c.apellido },
-    custom,
-  )
+  // Una sola CompleteRegistration por persona (email) y navegador
+  if (firstTime(`registro_${c.email || c.telefono}`)) {
+    const custom = { content_name: 'registro' }
+    fbq('track', 'CompleteRegistration', custom, { eventID: eventId })
+    sendCapiEvent(
+      'CompleteRegistration',
+      eventId,
+      { email: c.email, phone: c.telefono, firstName: c.nombre, lastName: c.apellido },
+      custom,
+    )
+  }
 
   contactStore.save({
     nombre: c.nombre ?? '',

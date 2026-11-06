@@ -13,7 +13,7 @@ import { CUALIFICACION } from '@/content/copy'
 import { useDialogFocus } from '@/composables/useDialogFocus'
 import { useContactStore } from '@/stores/contact'
 import { sendCapiEvent } from '@/utils/capi'
-import { buildPayload, fbq, generateEventId, postToGhl } from '@/utils/ghl'
+import { buildPayload, fbq, firstTime, generateEventId, postToGhl } from '@/utils/ghl'
 import {
   OBJETIVO,
   QUESTIONS,
@@ -97,7 +97,9 @@ async function handleSubmit() {
   const eventId = generateEventId('cualificacion')
   const labels = Object.fromEntries(QUESTIONS.map((q) => [`${q.key}_label`, labelFor(q.key, a[q.key])]))
 
-  await postToGhl(
+  // Mismas respuestas ya enviadas desde este navegador: no reenviar (re-dispararía notificaciones)
+  const answersKey = JSON.stringify({ ...a, objetivo: objetivo.value.trim(), email: c.email })
+  if (firstTime(`cualificacion_${answersKey}`)) await postToGhl(
     GHL_QUALIFICATION_WEBHOOK,
     buildPayload('cualificacion', c, {
       tags: ['step-2-cualificacion', califica ? 'califica' : 'no-califica'],
@@ -112,7 +114,8 @@ async function handleSubmit() {
     }),
   )
 
-  if (califica) {
+  // Un solo Lead por persona y navegador
+  if (califica && firstTime(`lead_${c.email || c.telefono}`)) {
     const custom = { content_name: 'lead-califica' }
     fbq('track', 'Lead', custom, { eventID: eventId })
     sendCapiEvent(
