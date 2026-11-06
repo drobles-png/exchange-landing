@@ -22,7 +22,7 @@ IP de red (celular) → esas visitas ensucian el pixel del cliente. CAPI no corr
 ## Flujo
 ```
 / landing (VSL con miniatura) → RegistrationModal ── webhook contacto (registro) · CompleteRegistration
-/ver-video  VSL Wistia, CTA bloqueado 420 s → QualificationModal ── webhook cualificación · Lead (si califica)
+/ver-video  VSL Wistia, CTA bloqueado 90 s → QualificationModal ── webhook cualificación · Lead (si califica)
    ├─ califica    → /agendar (GhlCalendar) → /cita-confirmada   webhook contacto (cita_agendada) · Schedule
    └─ no califica → /sin-espacio (cooldown 24 h)
 ```
@@ -56,7 +56,7 @@ Todo el texto en `src/content/copy.ts` y sale del guion del VSL o de exchangeec.
 | Webhook cualificación | `…/hooks/87BqVzDuO6O9K9zBBmao/webhook-trigger/CD2YQrdBrLDjCbgFTrG1` |
 | Calendario GHL | `widget/booking/HHPFhOGb0YyPs2R4lULU` · frame `HHPFhOGb0YyPs2R4lULU_1793826720768` |
 | Wistia | `kyu7ho16w9` (8:02, "EXCHANGE_VSL_1", confirmado 5-nov-2026) |
-| CTA de /ver-video | se desbloquea a los 420 s (7:00) |
+| CTA de /ver-video | se desbloquea a los 90 s (1:30) |
 | Storage / tag | prefijo `ex` · `funnel-exchange` |
 
 Secretos solo en `.env.local` (ignorado por git) y en env vars de Vercel (Production y Preview):
@@ -110,7 +110,7 @@ Nunca usar la variable `tags` como valor de etiqueta.
 - Candados (`firstTime` en `src/utils/ghl.ts`, claves `ex_sent_*`): CompleteRegistration y Lead una vez
   por persona y navegador; ViewContent una vez por sesión; registro/cualificación con datos iguales no
   reenvían a GHL; un contacto ya registrado no manda `registro_parcial`.
-- En producción el CTA se bloquea 420 s: para el e2e real agregar `{"wait": 422000}` después de /ver-video.
+- En producción el CTA se bloquea 90 s: para el e2e real agregar `{"wait": 92000}` después de /ver-video.
 - El pixel trae el plugin `botblocking`: con HeadlessChrome NO envía eventos (no es un bug). Para ver el
   Pixel en modo `full`, correr el e2e con user-agent de celular real (monkeypatch de `Browser.new_context`).
 
