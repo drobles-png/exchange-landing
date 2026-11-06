@@ -103,6 +103,13 @@ Nunca usar la variable `tags` como valor de etiqueta.
   publicados): los dos webhooks responden `request sent to trigger execution server` en registro,
   cualificación (CALIFICA y NO_CALIFICA) y cita. Contactos de prueba: prueba.califica@ y
   prueba.nocalifica@bakano-test.com (borrarlos en GHL).
+- Prueba 5-nov-2026 (producción, video nuevo, con candados anti-duplicados): GHL 200 en registro,
+  cualificación (CALIFICA) y cita_agendada; Pixel y CAPI con el mismo event_id en los 4 eventos, Meta
+  `events_received: 1` en cada uno; recargar /ver-video no repite ViewContent. La cita se simuló con el
+  postMessage `msgsndr-booking-complete` desde el iframe (no se reservó un horario real).
+- Candados (`firstTime` en `src/utils/ghl.ts`, claves `ex_sent_*`): CompleteRegistration y Lead una vez
+  por persona y navegador; ViewContent una vez por sesión; registro/cualificación con datos iguales no
+  reenvían a GHL; un contacto ya registrado no manda `registro_parcial`.
 - En producción el CTA se bloquea 420 s: para el e2e real agregar `{"wait": 422000}` después de /ver-video.
 - El pixel trae el plugin `botblocking`: con HeadlessChrome NO envía eventos (no es un bug). Para ver el
   Pixel en modo `full`, correr el e2e con user-agent de celular real (monkeypatch de `Browser.new_context`).
