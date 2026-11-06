@@ -32,9 +32,9 @@ export const GHL_BOOKING_CALENDAR = 'https://api.leadconnectorhq.com/widget/book
 export const GHL_BOOKING_FRAME_ID = 'HHPFhOGb0YyPs2R4lULU_1793826720768'
 
 // ── Video ─────────────────────────────────────────────────────────────────────
-export const WISTIA_MEDIA_ID = 'kt29jg68bp'
+export const WISTIA_MEDIA_ID = 'kyu7ho16w9'
 // Segundos que el CTA de /ver-video queda bloqueado (0 = sin bloqueo). En localhost son 3 s.
-export const CTA_UNLOCK_SECONDS = 100 // el VSL dura 1:55
+export const CTA_UNLOCK_SECONDS = 420 // el VSL (EXCHANGE_VSL_1) dura 8:02
 
 // ── Registro ──────────────────────────────────────────────────────────────────
 // true = el formulario de registro pide ciudad (va a GHL como `ciudad`)

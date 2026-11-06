@@ -22,7 +22,7 @@ IP de red (celular) → esas visitas ensucian el pixel del cliente. CAPI no corr
 ## Flujo
 ```
 / landing (VSL con miniatura) → RegistrationModal ── webhook contacto (registro) · CompleteRegistration
-/ver-video  VSL Wistia, CTA bloqueado 100 s → QualificationModal ── webhook cualificación · Lead (si califica)
+/ver-video  VSL Wistia, CTA bloqueado 420 s → QualificationModal ── webhook cualificación · Lead (si califica)
    ├─ califica    → /agendar (GhlCalendar) → /cita-confirmada   webhook contacto (cita_agendada) · Schedule
    └─ no califica → /sin-espacio (cooldown 24 h)
 ```
@@ -55,8 +55,8 @@ Todo el texto en `src/content/copy.ts` y sale del guion del VSL o de exchangeec.
 | Webhook contacto | `…/hooks/87BqVzDuO6O9K9zBBmao/webhook-trigger/5KPtu4CkzPqkntDCREWI` |
 | Webhook cualificación | `…/hooks/87BqVzDuO6O9K9zBBmao/webhook-trigger/CD2YQrdBrLDjCbgFTrG1` |
 | Calendario GHL | `widget/booking/HHPFhOGb0YyPs2R4lULU` · frame `HHPFhOGb0YyPs2R4lULU_1793826720768` |
-| Wistia | `kt29jg68bp` (1:55, "VSL Exchange") — **pendiente confirmar que es el VSL correcto** |
-| CTA de /ver-video | se desbloquea a los 100 s |
+| Wistia | `kyu7ho16w9` (8:02, "EXCHANGE_VSL_1", confirmado 5-nov-2026) |
+| CTA de /ver-video | se desbloquea a los 420 s (7:00) |
 | Storage / tag | prefijo `ex` · `funnel-exchange` |
 
 Secretos solo en `.env.local` (ignorado por git) y en env vars de Vercel (Production y Preview):
@@ -103,13 +103,11 @@ Nunca usar la variable `tags` como valor de etiqueta.
   publicados): los dos webhooks responden `request sent to trigger execution server` en registro,
   cualificación (CALIFICA y NO_CALIFICA) y cita. Contactos de prueba: prueba.califica@ y
   prueba.nocalifica@bakano-test.com (borrarlos en GHL).
-- En producción el CTA se bloquea 100 s: para el e2e real agregar `{"wait": 102000}` después de /ver-video.
+- En producción el CTA se bloquea 420 s: para el e2e real agregar `{"wait": 422000}` después de /ver-video.
 - El pixel trae el plugin `botblocking`: con HeadlessChrome NO envía eventos (no es un bug). Para ver el
   Pixel en modo `full`, correr el e2e con user-agent de celular real (monkeypatch de `Browser.new_context`).
 
 ## Pendientes del cliente (bloquean pauta)
-- Confirmar el video (`kt29jg68bp` dura 1:55 y es el de Vancouver de su web; el guion dura ~6-7 min).
-  Si cambia: actualizar `WISTIA_MEDIA_ID`, `CTA_UNLOCK_SECONDS` y la miniatura `vsl-poster.webp`.
 - Legales: razón social, RUC, correo, ciudad (`LEGAL` en la config).
 - Facebook de Exchange (`CLIENT.facebook`).
 - Opcional: foto de Karla/Majo y permiso para usar los videos de estudiantes/padres de su web como testimonios.
