@@ -38,6 +38,8 @@ Sin flujo de pago (`PAYMENT_ENABLED = false`).
 - Pasos internos usan `StepShell.vue`: cabecera azul con slot `hero` (título) y el contenido se monta
   sobre su borde inferior.
 - Logos: `src/assets/logos/exchange-logo{,-white}.png`. Miniatura del VSL: `src/assets/video/vsl-poster.webp`.
+- Imagen para compartir: `public/og-image.png` (1200×630, póster + logo). `og:url`/`og:image` en `index.html`
+  apuntan a exchange-ecuador.vercel.app: actualizarlos si se pone dominio propio (`SITE_URL`).
 - Fotos de destinos `src/assets/destinos/*.webp`: San Diego, Vancouver y Florencia de la landing
   anterior del cliente; Oxford de Wikimedia (Julian Herzog, **CC BY 4.0**: el crédito al pie es obligatorio).
   No usar fotos de Londres: el VSL dice que no van a Londres, Nueva York ni Toronto.
@@ -58,6 +60,10 @@ Todo el texto en `src/content/copy.ts` y sale del guion del VSL o de exchangeec.
 | Wistia | `kyu7ho16w9` (8:02, "EXCHANGE_VSL_1", confirmado 5-nov-2026) |
 | CTA de /ver-video | se desbloquea a los 90 s (1:30) |
 | Storage / tag | prefijo `ex` · `funnel-exchange` |
+
+`api/capi.ts` = versión actual de la plantilla (10-nov-2026): rechaza otro Origin (403) y eventos fuera de la
+lista (400); el token va en el cuerpo, no en la URL. Si el workflow de GHL tiene la acción *Meta Conversion API*,
+quitarla: el evento de servidor sale de la landing.
 
 Secretos solo en `.env.local` (ignorado por git) y en env vars de Vercel (Production y Preview):
 `META_PIXEL_ID`, `META_CAPI_TOKEN`. `META_CAPI_TEST_EVENT_CODE` solo mientras se prueba en el Probador

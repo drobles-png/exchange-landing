@@ -163,7 +163,7 @@ export const PAGO = {
   step: 'Paso 2 de 2 · Confirma tu lugar',
   title: 'falta un paso para confirmar tu lugar',
   sub: 'Tu lugar queda reservado cuando completas el pago.',
-  bullets: ['[Formato: en vivo, en línea]', '[Qué se lleva el asistente]'],
+  bullets: [] as string[], // Sin flujo de pago (PAYMENT_ENABLED = false)
   noLink: 'Recibimos tus datos. Te enviaremos el enlace de pago a tu WhatsApp y a tu correo.',
   whatsappMsg: (nombre: string) => `Hola, soy ${nombre}. Me registré y quiero completar mi pago.`,
 }
@@ -173,7 +173,6 @@ export const CONFIRMADA = {
   steps: [
     { icon: 'fa-solid fa-envelope-open-text', text: 'Revisa tu correo: ahí te llega la confirmación y el acceso.' },
     { icon: 'fa-brands fa-whatsapp', text: 'Te escribiremos por WhatsApp antes de empezar.' },
-    { icon: 'fa-solid fa-list-check', text: '[Qué preparar antes del evento]' },
   ],
   calendarTitle: '¿Prefieres que veamos tu caso? Agenda una reunión',
   calendarButton: 'Agendar una reunión',
