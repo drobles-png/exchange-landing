@@ -77,7 +77,8 @@ de eventos; luego `vercel env rm … production --yes` y redeploy (ya quitado el
 ## Cualificación (`src/utils/qualification.ts`) — aprobada con el usuario (4-nov-2026)
 Preguntas: quién llena (`padre_madre`, `familiar`, `estudiante`) · edad del hijo (`menor_13`, `13_15`,
 `16_17`, `mayor_18`) · cuándo viaja (`costa` = vacaciones ciclo Costa marzo 2027, `sierra` = ciclo Sierra
-julio 2027, `siguiente_ciclo`, `no_sabe`) · inversión $4.000–$7.000 con facilidades de pago (`si`,
+julio 2027, `siguiente_costa` = marzo 2028, `siguiente_sierra` = julio 2028, `no_sabe`;
+`siguiente_ciclo` se reemplazó el 11-nov-2026) · inversión $4.000–$7.000 con facilidades de pago (`si`,
 `facilidades`, `no`) · abierta "¿Qué esperan de este viaje?" (`objetivo`, mín. 5 palabras).
 **No califica:** `estudiante`, edad `menor_13`/`mayor_18`, o inversión `no`. Los `value` son estables:
 si GHL ya está mapeado, solo agregar, nunca renombrar. Al cambiar de año escolar, actualizar los años

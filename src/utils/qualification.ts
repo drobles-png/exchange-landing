@@ -48,7 +48,8 @@ export const QUESTIONS = [
     options: [
       { value: 'costa', label: 'Vacaciones escolares ciclo Costa (marzo 2027)' },
       { value: 'sierra', label: 'Vacaciones escolares ciclo Sierra (julio 2027)' },
-      { value: 'siguiente_ciclo', label: 'En un siguiente ciclo escolar' },
+      { value: 'siguiente_costa', label: 'Siguiente ciclo escolar Costa (marzo 2028)' },
+      { value: 'siguiente_sierra', label: 'Siguiente ciclo escolar Sierra (julio 2028)' },
       { value: 'no_sabe', label: 'Todavía no sabemos' },
     ],
   },
