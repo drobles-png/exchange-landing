@@ -136,6 +136,24 @@ export const BOOKING = {
   sub: 'Conocemos a tu familia, resolvemos tus dudas y te mostramos el programa que mejor se ajusta a ustedes. Sin costo.',
   pending:
     'Estamos terminando de configurar el calendario. Te escribiremos por WhatsApp para coordinar tu reunión.',
+  whatsappLead: 'Si quieres otro horario, puedes agendarlo por WhatsApp.',
+  whatsappButton: 'Agendar por WhatsApp',
+}
+
+/** Ciclo de viaje (respuesta `viaje` de la cualificación) como va en el mensaje de WhatsApp. */
+const CICLO_WHATSAPP: Record<string, string> = {
+  costa: 'ciclo Costa (marzo 2027)',
+  sierra: 'ciclo Sierra (julio 2027)',
+  siguiente_costa: 'siguiente ciclo Costa (marzo 2028)',
+  siguiente_sierra: 'siguiente ciclo Sierra (julio 2028)',
+}
+
+export function bookingWhatsappMsg(nombre: string, viaje: string): string {
+  const saludo = nombre ? `Hola, soy ${nombre}.` : 'Hola.'
+  const ciclo = CICLO_WHATSAPP[viaje]
+  return ciclo
+    ? `${saludo} Quisiera agendar mi reunión para el viaje del ${ciclo}.`
+    : `${saludo} Quisiera agendar mi reunión para el viaje. Todavía no sabemos en qué ciclo viajaría.`
 }
 
 // ── /cita-confirmada ──────────────────────────────────────────────────────────

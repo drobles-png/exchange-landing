@@ -50,8 +50,8 @@ export const CURRENCY = 'USD'
 export const PRODUCT_NAME = ''
 // Link de la pasarela; debe redirigir al terminar a <dominio>/inscripcion-confirmada
 export const PAYMENT_URL = ''
-// WhatsApp de respaldo para cobrar si aún no hay PAYMENT_URL (formato 593987654321)
-export const WHATSAPP_NUMBER = ''
+// WhatsApp de Exchange (formato 593987654321): botón de /agendar y respaldo de pago
+export const WHATSAPP_NUMBER = '593967242424'
 
 // ── Evento en vivo (OPCIONAL) ─────────────────────────────────────────────────
 // ISO con zona: '2026-11-20T19:00:00-05:00'. Vacío = "Te avisamos la fecha por WhatsApp y correo"
