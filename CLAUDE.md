@@ -28,6 +28,9 @@ IP de red (celular) → esas visitas ensucian el pixel del cliente. CAPI no corr
 ```
 Sin flujo de pago (`PAYMENT_ENABLED = false`).
 
+/agendar tiene además un botón de WhatsApp (`WHATSAPP_NUMBER` = 593967242424) con mensaje según la respuesta
+`viaje` (`bookingWhatsappMsg` en `copy.ts`). El clic no manda evento a GHL ni a Meta.
+
 ## Marca y diseño
 - Marca del cliente (no el sistema de diseño personal): colores y tipografía de exchangeec.lat.
   Azul `#1d519d`, turquesa `#29b7b8`, navy `#0e182c`, degradado del logo; CTA naranja `#c94f00`
