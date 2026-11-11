@@ -55,7 +55,7 @@ export const LANDING = {
     sub: 'Cada destino tiene su propia personalidad. En la reunión te ayudamos a elegir el que va mejor con tu hijo.',
     items: [
       { key: 'usa', code: 'USA', country: 'Estados Unidos', places: 'San Diego · Madison · Boston', text: 'Vive el estilo de vida americano y perfecciona tu inglés.', calendar: 'Costa · Sierra', alt: 'Puente de Coronado en la bahía de San Diego' },
-      { key: 'inglaterra', code: 'ENG', country: 'Inglaterra', places: '4 semanas en residencia', text: 'Inglés con la cultura británica de cerca, viviendo en residencia.', calendar: 'Costa · Sierra', alt: 'Radcliffe Camera en Oxford, Inglaterra' },
+      { key: 'inglaterra', code: 'ENG', country: 'Inglaterra', places: '', text: 'Inglés con la cultura británica de cerca, viviendo en residencia.', calendar: 'Costa · Sierra', alt: 'Radcliffe Camera en Oxford, Inglaterra' },
       { key: 'canada', code: 'CAN', country: 'Canadá', places: 'Vancouver', text: 'Vive la diversidad cultural canadiense y mejora tu inglés en Vancouver.', calendar: 'Costa', alt: 'Vista aérea de Vancouver' },
       { key: 'italia', code: 'ITA', country: 'Italia', places: '', text: 'Descubre el arte, la historia y la gastronomía italiana mientras aprendes el idioma.', calendar: 'Costa · Sierra', alt: 'Catedral de Santa María del Fiore en Florencia' },
     ],
