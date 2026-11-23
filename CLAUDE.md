@@ -43,7 +43,7 @@ Sin flujo de pago (`PAYMENT_ENABLED = false`).
   sobre su borde inferior.
 - Logos: `src/assets/logos/exchange-logo{,-white}.png`. Miniatura del VSL: `src/assets/video/vsl-poster.webp`.
 - Imagen para compartir: `public/og-image.png` (1200×630, póster + logo). `og:url`/`og:image` en `index.html`
-  apuntan a exchange-lng.vercel.app: actualizarlos si se pone dominio propio (`SITE_URL`).
+  apuntan a exchange-ecuador.vercel.app: actualizarlos si se pone dominio propio (`SITE_URL`).
 - Fotos de destinos `src/assets/destinos/*.webp`: San Diego, Vancouver y Florencia de la landing
   anterior del cliente; Oxford de Wikimedia (Julian Herzog, **CC BY 4.0**: el crédito al pie es obligatorio).
   No usar fotos de Londres: el VSL dice que no van a Londres, Nueva York ni Toronto.
@@ -74,7 +74,7 @@ Secretos solo en `.env.local` (ignorado por git) y en env vars de Vercel (Produc
 de eventos; luego `vercel env rm … production --yes` y redeploy (ya quitado el 4-nov-2026).
 
 ## Producción
-- https://exchange-lng.vercel.app (dominio oficial; `exchange-ecuador.vercel.app` sigue vivo hasta cambiar los anuncios)
+- https://exchange-ecuador.vercel.app (único dominio, decisión del usuario 23-nov-2026)
 - Repo https://github.com/drobles-png/exchange-landing (público) · Vercel `bakano-proyects/exchange-landing`,
   git conectado: cada push a `main` despliega.
 
@@ -143,4 +143,4 @@ Nunca usar la variable `tags` como valor de etiqueta.
 
 ## Auditoría 22-nov-2026
 - Prueba GHL real (2 leads): registro y cualificación llegan, pero **la cita no se procesa** (ni nota, ni tag, ni etapa) y en la 2ª prueba GHL **creó 2 contactos con el mismo email/teléfono** (uno por workflow). Arreglar en GHL: desduplicación por email y teléfono activa, "Crear/actualizar contacto" en ambos workflows, quitar la espera larga (~2 min) del workflow de contacto, permitir reingreso y rama por `etapa = cita_agendada` → "Llamada agendada".
-- Dominio oficial `exchange-lng.vercel.app`; `exchange-ecuador` y `exchange-landing-kappa` siguen vivos hasta cambiar los anuncios (quitarlos en el panel).
+- Dominio oficial `exchange-ecuador.vercel.app`; `exchange-ecuador` y `exchange-landing-kappa` siguen vivos hasta cambiar los anuncios (quitarlos en el panel).
