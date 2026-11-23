@@ -15,9 +15,10 @@ Font Awesome 6 por CDN · Poppins + Montserrat + IBM Plex Mono (Google Fonts) ·
 `pnpm install` · `pnpm dev` (solo esta compu) · `pnpm dev:host` (también el celular, misma wifi) ·
 `pnpm dev:api` (vercel dev, front + /api; requiere vincular el proyecto) · `pnpm type-check` · `pnpm build`
 
-**Ojo en local:** los webhooks de GHL son reales y no tienen bloqueo en localhost → registrarse crea
-un contacto real (usar `@bakano-test.com`). El pixel no carga en `localhost`, pero sí al entrar por la
-IP de red (celular) → esas visitas ensucian el pixel del cliente. CAPI no corre con `pnpm dev`.
+**En local:** `src/utils/ghl.ts` no manda nada a GHL en localhost (se ve `[GHL stub]` en consola);
+para probar los workflows a propósito, abrir con `?ghl=1` (usar `@bakano-test.com`). El pixel no carga en
+`localhost`, pero sí al entrar por la IP de red (celular) → esas visitas ensucian el pixel del cliente.
+CAPI no corre con `pnpm dev`.
 
 ## Flujo
 ```
