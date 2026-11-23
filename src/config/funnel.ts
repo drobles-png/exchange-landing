@@ -16,7 +16,7 @@ export const BRAND_NAME = CLIENT.name || '[Marca]'
 export const PERSON_NAME = CLIENT.person || '[Nombre de quien habla]'
 
 // Dominio público (canonical, og:url). Vacío = window.location.origin
-export const SITE_URL = ''
+export const SITE_URL = 'https://exchange-lng.vercel.app'
 
 // ── Meta ──────────────────────────────────────────────────────────────────────
 // vite.config.ts inyecta el snippet del pixel en index.html con este id (vacío = sin pixel).
