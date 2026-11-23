@@ -140,3 +140,7 @@ Nunca usar la variable `tags` como valor de etiqueta.
 
 ## localStorage / sessionStorage (`ex_…`)
 `_contact` · `_qualification` · `_disq_at` · `_booked_at` · `_fb` (sessionStorage)
+
+## Auditoría 22-nov-2026
+- Prueba GHL real (2 leads): registro y cualificación llegan, pero **la cita no se procesa** (ni nota, ni tag, ni etapa) y en la 2ª prueba GHL **creó 2 contactos con el mismo email/teléfono** (uno por workflow). Arreglar en GHL: desduplicación por email y teléfono activa, "Crear/actualizar contacto" en ambos workflows, quitar la espera larga (~2 min) del workflow de contacto, permitir reingreso y rama por `etapa = cita_agendada` → "Llamada agendada".
+- Dominio oficial `exchange-lng.vercel.app`; `exchange-ecuador` y `exchange-landing-kappa` siguen vivos hasta cambiar los anuncios (quitarlos en el panel).
